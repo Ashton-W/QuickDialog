@@ -125,6 +125,17 @@ NSDictionary *QRootBuilderStringToTypeConversionDict;
     return root;
 }
 
+- (void)buildRoot:(QRootElement *)root withObject:(id)obj {
+    if (QRootBuilderStringToTypeConversionDict ==nil)
+        [self initializeMappings];
+    
+    [self updateObject:root withPropertiesFrom:obj];
+    for (id section in (NSArray *)[obj valueForKey:[NSString stringWithFormat:@"sections"]]){
+        [self buildSectionWithObject:section forRoot:root];
+    }
+}
+
+
 - (void)initializeMappings {
     QRootBuilderStringToTypeConversionDict = [[NSDictionary alloc] initWithObjectsAndKeys:
 

@@ -21,6 +21,14 @@
 
 - (QRootElement *)buildWithObject:(id)obj;
 
+/**
+ This is the same as -buildWithObject but takes a QRootElement object as a parameter instead of returning a newly created one.
+ This allows subclasses of QRootElement to make use of QRootBuilder.
+ @param root A QRootElement object.
+ @param obj A key-value encoded object.
+ */
+- (void)buildRoot:(QRootElement *)root withObject:(id)obj;
+
 + (void)trySetProperty:(NSString *)propertyName onObject:(id)target withValue:(id)value localized:(BOOL)shouldLocalize;
 
 - (QElement *)buildElementWithObject:(id)obj;
