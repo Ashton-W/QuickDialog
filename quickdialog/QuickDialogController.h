@@ -16,7 +16,7 @@
 
 @interface QuickDialogController : UIViewController {
 
-@private
+@protected
     QRootElement *_root;
     id <UITableViewDataSource> _dataSource;
     id <UITableViewDelegate> _delegate;
