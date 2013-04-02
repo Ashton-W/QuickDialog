@@ -1,0 +1,3 @@
+[submodule "quickdialog-javascript/Mocha"]
+	path = quickdialog-javascript/Mocha
+	url = git://github.com/logancollins/Mocha.git
