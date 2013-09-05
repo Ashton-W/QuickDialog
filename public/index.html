@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <meta name="description" content="A description about my blog homepage" />
+    
+
+    <title>QuickDialog - QuickDialog</title>
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/offcanvas.css" rel="stylesheet">
+    <link href="stylesheets/pygment_trac.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">QuickDialog</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>QuickDialog</h1>
+            <p>Quick and simple dialogs for iOS developers.</p>
+          </div>
+          <div class="row">
+            <p>QuickDialog allows you to create HIG-compliant iOS forms for your apps without having to directly deal with UITableViews, delegates and data sources. Fast and efficient, you can create forms with multiple text fields, or with thousands of items with no sweat!</p>
+
+<p><img alt='sample controls' src='assets/images/quickdialog2_normal.png' /> <img alt='sample controls' src='assets/images/quickdialog3_normal.png' /></p>
+<iframe frameborder='0' height='315' src='http://www.youtube.com/embed/YLXNwY-INbM?feature=player_embedded' width='420'> </iframe>
+<blockquote>
+<p>QuickDialog is inspired by the brilliant MonoTouch.Dialog library created by Miguel de Icaza, which can be found at https://github.com/migueldeicaza/MonoTouch.Dialog.</p>
+</blockquote>
+
+<h1 id='features'>Features</h1>
+
+<p>QuickDialog support many different built-in types of elements for your forms, like Entry elements, on/off elements, sliders and even simple web addresses that automatically open browsers and adress elements to open map views. For a complete list of elements, look below! The framework also is very extensible, making it simple for you to create your custom elements an cells.</p>
+
+<p>And if you don&#8217;t like the basic look of controls, simply override one method and you&#8217;ll have full control of the cells being displayed. Can&#8217;t get much simpler than that!</p>
+
+<h1 id='how_to_add_quickdialog_to_your_project'>How to add QuickDialog to your project</h1>
+
+<h4 id='using_cocoapods'>Using CocoaPods:</h4>
+
+<p><code>
+pod &#39;QuickDialog&#39;
+</code></p>
+
+<h4 id='git_submodule'>Git submodule:</h4>
+
+<p>The easiest way to do add QuickDialog to your existing project is to add it as a git SubModule, and then import the project as part of yours:</p>
+
+<p><code>
+cd your-project-location
+git submodule add git@github.com:escoz/QuickDialog.git
+</code></p>
+
+<p>this will copy the code from github automatically for you, so you can update it in the future easily.</p>
+
+<p>In Xcode:</p>
+
+<ul>
+<li>
+<p>open YOUR existing project (or create a new one)</p>
+</li>
+
+<li>
+<p>drag and drop the QuickDialog.xcodeproj file downloaded from github previously from Finder to your project (either root or under Frameworks)</p>
+</li>
+
+<li>
+<p>In YOUR project configuration:</p>
+</li>
+
+<li>
+<p>in the Build Phases, Add QuickDialog (the lib, not the example app) as a Target Dependency</p>
+</li>
+
+<li>
+<p>In the Build phases-&gt;Link binary with librarys, add these two libraries: MapKit.framework and CoreLocation.framework. - in the Link Binary With Libraries section, add the libQuickDialog.a library</p>
+</li>
+
+<li>
+<p>In YOUR Prefix.pch file, add:</p>
+
+<p><code>#import &lt;QuickDialog/QuickDialog.h&gt;</code></p>
+</li>
+
+<li>
+<p>In YOUR project configuration, on the &#8220;Build Settings&#8221; tab</p>
+
+<ul>
+<li>locate the &#8221;&#8221;User Header Search Paths&#8221;&#8221; setting, and set the Release value to <code>${PROJECT_DIR}/QuickDialog</code> (including quotes!) and check the &#8220;Recursive&#8221; check box.</li>
+
+<li>The Debug value should already be set, but if it&#8217;s not, change that as well.</li>
+
+<li>Also locate the &#8220;Always Search User Paths&#8221; value and set it to YES. - Finally, find the &#8220;Other Linker Flags&#8221; option, and add the value <code>-ObjC</code> (no quotes).</li>
+</ul>
+</li>
+</ul>
+
+<p>That should be all there is. Change the build target to &#8220;iOS Device&#8221;, and run Product-&gt;Archive. Good luck!</p>
+
+<h1 id='how_to_use_it'>How to use it</h1>
+
+<p>In order to use the QuickDialog library on your project, you&#8217;ll have to first import the code or link the project to your own.</p>
+
+<p>There&#8217;s three different class types you need to know in order to use QuickDialog:</p>
+
+<p><strong>QuickDialogController</strong> – subclass of a UITableViewController that is responsible for actually displaying the dialog. For your application, you&#8217;ll very likely be creating subclasses of this class, one for each dialog you own. You&#8217;ll never really have to create objects of this type directly with alloc/init. The framework takes care of this for you.</p>
+
+<p><strong>QRootElement</strong> - think of a root element as a dialog: a collection of sections and cells that can be used to display some useful data to the user. Every QuickDialogController can only display one RootElement at a time, although that RootElement can contain other root elements inside, which causes a new controller to automatically be displayed. Elements are always grouped in sections in the root element, as you can see below.</p>
+
+<p><strong>QElement</strong> - an element object maps one-to-one map to a UITableViewCell, although it includes more functionality, like being able to read values from the cells and having multiple types. QuickDialog provides many different built-in element types, like the ButtonElement and the EntryElement, but you can also create your custom one.</p>
+
+<h3 id='hello_world'>Hello World:</h3>
+<div class='highlight'><pre><code class='objc'><span class='n'>QRootElement</span> <span class='o'>*</span><span class='n'>root</span> <span class='o'>=</span> <span class='p'>[[</span><span class='n'>QRootElement</span> <span class='n'>alloc</span><span class='p'>]</span> <span class='n'>init</span><span class='p'>];</span>
+<span class='n'>root</span><span class='p'>.</span><span class='n'>title</span> <span class='o'>=</span> <span class='s'>@&quot;Hello World&quot;</span><span class='p'>;</span>
+<span class='n'>root</span><span class='p'>.</span><span class='n'>grouped</span> <span class='o'>=</span> <span class='nb'>YES</span><span class='p'>;</span>
+<span class='n'>QSection</span> <span class='o'>*</span><span class='n'>section</span> <span class='o'>=</span> <span class='p'>[[</span><span class='n'>QSection</span> <span class='n'>alloc</span><span class='p'>]</span> <span class='n'>init</span><span class='p'>];</span>
+<span class='n'>QLabelElement</span> <span class='o'>*</span><span class='n'>label</span> <span class='o'>=</span> <span class='p'>[[</span><span class='n'>QLabelElement</span> <span class='n'>alloc</span><span class='p'>]</span> <span class='n'>initWithTitle</span><span class='o'>:</span><span class='s'>@&quot;Hello&quot;</span> <span class='n'>Value</span><span class='o'>:</span><span class='s'>@&quot;world!&quot;</span><span class='p'>];</span>
+
+<span class='p'>[</span><span class='n'>root</span> <span class='n'>addSection</span><span class='o'>:</span><span class='n'>section</span><span class='p'>];</span>
+<span class='p'>[</span><span class='n'>section</span> <span class='n'>addElement</span><span class='o'>:</span><span class='n'>label</span><span class='p'>];</span>
+
+<span class='n'>UINavigationController</span> <span class='o'>*</span><span class='n'>navigation</span> <span class='o'>=</span> <span class='p'>[</span><span class='n'>QuickDialogController</span> <span class='n'>controllerWithNavigationForRoot</span><span class='o'>:</span><span class='n'>root</span><span class='p'>];</span>
+<span class='p'>[</span><span class='n'>self</span> <span class='n'>presentModalViewController</span><span class='o'>:</span><span class='n'>navigation</span> <span class='n'>animated</span><span class='o'>:</span><span class='nb'>YES</span><span class='p'>];</span>
+</code></pre></div>
+<p>The code above will create the form below:</p>
+
+<p><img alt='Hello World' src='assets/images/quickdialog1small.png' /></p>
+
+<p>Pretty simple, right?!</p>
+
+<h1 id='elements'>Elements</h1>
+
+<p>Out of the box, QuickDialog provides you many different elements you can use on your app:</p>
+
+<ul>
+<li><strong>QLabelElement</strong>: simple inline label + value cell</li>
+
+<li><strong>QBadgeElement</strong>: like the label cell, but the value is displayed with a badge, like the Mail app.</li>
+
+<li><strong>QBooleanElement</strong>: shows a on/off switch</li>
+
+<li><strong>QButtonElement</strong>: centered title that looks like a button.</li>
+
+<li><strong>QDateTimeElement</strong>: allows you to edit dates, time, or date+time values. Editing occurs in a new controller that is pushed automatically.</li>
+
+<li><strong>QEntryElement</strong>: input field to allow you to collect values from the user. Automatically resizes so that all entries in the same sections look alike.</li>
+
+<li><strong>QDecimalElement</strong>: very much like an entry field, but allows only numbers to be typed. Automatically limits numbers to a predefined number of decimal places.</li>
+
+<li><strong>QFloatElement</strong>: shows an slider control.</li>
+
+<li><strong>QMapElement</strong>: when selected, shows a fullscreen map with the location selected. Requires a lat/long value.</li>
+
+<li><strong>QRadioElement</strong>: allows user to select one of multiple options available. Automatically pushes a new table with the item to be selected.</li>
+
+<li><strong>QTextElement</strong>: freeform text, which is rendered with the font provided.</li>
+
+<li><strong>QWebElement</strong>: pushes a simple browser that opens the URL defined in the element.</li>
+</ul>
+
+<p>All those elements contain a few parameters that can be used:</p>
+
+<ul>
+<li><strong>key</strong>: used to set the name of every cell, so that you can find them automatically. This field is also used to read values back from each cell.</li>
+
+<li><strong>controllerAction</strong>: string that represents the controller method that will be called when the cell is selected. Many elements automatically display a disclosure indicator if this property is set.</li>
+
+<li><strong>onSelected</strong>: block that is executed the moment the cell is selected. Many elements automatically display a disclosure indicator if this property is set.</li>
+</ul>
+
+<h2 id='sections'>Sections</h2>
+
+<p>Sections are simple groupings of elements. Sections by default have a few properties:</p>
+
+<ul>
+<li><strong>title/footer</strong>: simple strings displayed as header and footer of the section</li>
+
+<li><strong>headerView/footerView</strong>: in case these are set, the views passed are displayed instead of the titles. Very useful to display images or custom views in tables.</li>
+</ul>
+
+<p>Besides those properties, a few custom section types can be used:</p>
+
+<ul>
+<li><strong>QRadioSection</strong>: display multiple choice elements inline, instead of pushing another view controller with the options.</li>
+
+<li><strong>QSortingSection</strong>: automatically enables sorting of the cells inside the section.</li>
+</ul>
+
+<h2 id='styling'>Styling</h2>
+
+<p>Styling the cells in your dialogs is easy with QuickDialog. To be able to change the background, fonts and colors of your cells, simply implement the QuickDialogStyleProvider protocol, and set the proper delegate class you your table view. You can see an example of that on the LoginController of the demo app: https://github.com/escoz/QuickDialog/blob/master/sample/LoginController.m.</p>
+
+<p>There&#8217;s only one method you need to implement for that protocol: <code>-cell:willAppearForElement:element atIndexPath:</code>, which will be called for every cell displayed, and allows you to change the cells as much as you would like.</p>
+
+<h2 id='custom_dialog_controllers'>Custom Dialog Controllers</h2>
+
+<p>Using custom dialog controllers are a very simple and effective way of having full control on how your dialog is displayed. To do this, simple create a subclass of the QuickDialogController class. You can use this subclass to do things like change the looks and behavior of the tableview, implement styling, and implement actions that get called when elements are executed.</p>
+
+<p>Instead of directly creating your custom controller objects, though, RootElement objects can be told which controller they use, and they&#8217;ll automatically create controllers of that type as needed. So, for example, if you have a new class of type <code>MyDialogController</code> that is a subclass of the <code>QuickDialogController</code>, you can define the root as follow:</p>
+<div class='highlight'><pre><code class='objc'><span class='n'>QRootElement</span> <span class='o'>*</span><span class='n'>root</span> <span class='o'>=</span> <span class='p'>[[</span><span class='n'>QRootElement</span> <span class='n'>alloc</span><span class='p'>]</span> <span class='n'>init</span><span class='p'>];</span>
+<span class='n'>root</span><span class='p'>.</span><span class='n'>title</span> <span class='o'>=</span> <span class='s'>@&quot;Hello World&quot;</span><span class='p'>;</span>
+<span class='n'>root</span><span class='p'>.</span><span class='n'>controllerName</span> <span class='o'>=</span> <span class='s'>@&quot;MyDialogController&quot;</span><span class='p'>;</span>
+
+<span class='c1'>// ... define your root element content here</span>
+
+<span class='n'>MyDialogController</span> <span class='o'>*</span><span class='n'>myDialogController</span> <span class='o'>=</span> <span class='p'>[</span><span class='n'>QuickDialogController</span> <span class='n'>controllerForRoot</span><span class='o'>:</span><span class='n'>root</span><span class='p'>];</span>
+<span class='p'>[</span><span class='n'>self</span> <span class='n'>presentModalViewController</span><span class='o'>:</span><span class='n'>navigation</span> <span class='n'>animated</span><span class='o'>:</span><span class='nb'>YES</span><span class='p'>];</span>
+</code></pre></div>
+<p>The controller, and all the controllers necessary to display that root element will automatically be of the type you defined!</p>
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="well sidebar-nav">
+            <ul class="nav">
+              <li>Sidebar</li>
+              <li class="active"><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li>Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li>Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div><!--/.container-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/offcanvas.js"></script>
+
+    <script>
+      $('#menu [data-section=""]').addClass('active');
+    </script>
+
+    <a href="http://github.com/escoz/QuickDialog"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1040;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+  
+
+  </body>
+</html>

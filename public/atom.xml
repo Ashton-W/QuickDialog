@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>QuickDialog</title>
+ <link href="http://blog.example.com/atom.xml" rel="self"/>
+ <link href="http://blog.example.com/"/>
+ <updated>2013-09-05T21:32:35+10:00</updated>
+ <id>http://blog.example.com/</id>
+ <author>
+   <name>Me</name>
+   <email>me@example.com</email>
+ </author>
+
+ 
+
+</feed>
